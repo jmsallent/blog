@@ -1,25 +1,24 @@
 import { Router } from 'express';
+import { Post } from "../models/post.model.js"
 
-// import all controllers
-// import SessionController from './app/controllers/SessionController';
-
-const routes = new Router();
+export const routes = new Router();
 
 // Add routes
-routes.get('/', function(req, res) {
-    var locals = {
-      title: 'Page Title',
-      description: 'Page Description',
-      header: 'Page Header'
-    };
-    res.render('index');
-  });
+routes.get('/', async (req, res) => {
+  const posts = await Post.find().limit(5);
+  res.render('index', {posts});
+});
+
+routes.get('/posts', function(req, res) {
   
-routes.get('/post', function(req, res) {
-    var locals = {
-    title: 'Page Title',
-    description: 'Page Description',
-    header: 'Page Header'
-    };
-    res.render('post');
+  res.render('post');
+});
+
+routes.get('/post/:id', async (req, res) => {
+  const postId = req.params.id;
+  const post = await Post.findOne({id : postId});
+  console.log("-----------------------")
+  console.log("-----------------------")
+  console.log(post)
+  res.render('post');
 });
