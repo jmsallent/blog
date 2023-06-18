@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: Nombre de tu aplicación
+  description: Descripción de tu aplicación
+  version: 1.0.0
+  contact:
+    name: Tu Nombre
+    email: tuemail@example.com
+  license:
+    name: Licencia de tu aplicación
+    url: https://www.example.com/licencia
+servers:
+  - url: http://localhost:8000/
+paths:
+  /:
+    get:
+      summary: Obtener la página principal
+      responses:
+        '200':
+          description: Respuesta exitosa
+  /post/{id}:
+    get:
+      summary: Obtener detalles de un post
+      parameters:
+        - name: id
+          in: path
+          description: ID del post
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Respuesta exitosa
+  /admin/create:
+    post:
+      summary: Crear un nuevo post
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Título del post
+                content:
+                  type: string
+                  description: Contenido del post
+              required:
+                - title
+                - content
+      responses:
+        '201':
+          description: Post creado exitosamente
+  /admin/update/{id}:
+    put:
+      summary: Actualizar un post existente
+      parameters:
+        - name: id
+          in: path
+          description: ID del post a actualizar
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Título del post
+                content:
+                  type: string
+                  description: Contenido del post
+              required:
+                - title
+                - content
+      responses:
+        '200':
+          description: Post actualizado exitosamente
+  /admin/delete/{id}:
+    delete:
+      summary: Eliminar un post
+      parameters:
+        - name: id
+          in: path
+          description: ID del post a eliminar
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Post eliminado exitosamente

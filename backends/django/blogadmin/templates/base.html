@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Título de tu blog{% endblock %}</title>
+</head>
+<body>
+  <header>
+    <!-- Encabezado -->
+    <h1>Mi Blog</h1>
+  </header>
+
+  <nav>
+    <!-- Barra de navegación -->
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/post">Posts</a></li>
+      <li><a href="/login">Iniciar sesión</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Contenido específico de cada página -->
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <footer>
+    <!-- Pie de página -->
+    <p>Derechos de autor &copy; 2023. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
