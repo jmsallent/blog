@@ -17,8 +17,6 @@ routes.get('/posts', function(req, res) {
 routes.get('/post/:id', async (req, res) => {
   const postId = req.params.id;
   const post = await Post.findOne({id : postId});
-  console.log("-----------------------")
-  console.log("-----------------------")
   console.log(post)
   res.render('post');
 });
